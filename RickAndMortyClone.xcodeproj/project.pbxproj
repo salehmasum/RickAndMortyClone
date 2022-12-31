@@ -22,6 +22,10 @@
 		510129D3295FCBEE00BEBEE0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129D2295FCBEE00BEBEE0 /* NetworkService.swift */; };
 		510129D5295FCC5100BEBEE0 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129D4295FCC5100BEBEE0 /* NetworkRequest.swift */; };
 		510129D7295FCEA900BEBEE0 /* NetworkEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129D6295FCEA900BEBEE0 /* NetworkEndpoint.swift */; };
+		510129D9295FF73C00BEBEE0 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129D8295FF73B00BEBEE0 /* Origin.swift */; };
+		510129DB296008B500BEBEE0 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129DA296008B500BEBEE0 /* SingleLocation.swift */; };
+		510129DD29600C8E00BEBEE0 /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129DC29600C8E00BEBEE0 /* CharacterStatus.swift */; };
+		510129DF29600D1B00BEBEE0 /* CharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 510129DE29600D1B00BEBEE0 /* CharacterGender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		510129D2295FCBEE00BEBEE0 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		510129D4295FCC5100BEBEE0 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		510129D6295FCEA900BEBEE0 /* NetworkEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEndpoint.swift; sourceTree = "<group>"; };
+		510129D8295FF73B00BEBEE0 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
+		510129DA296008B500BEBEE0 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
+		510129DC29600C8E00BEBEE0 /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
+		510129DE29600D1B00BEBEE0 /* CharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterGender.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +108,10 @@
 				510129C3295E587200BEBEE0 /* Location.swift */,
 				510129C5295E5FE600BEBEE0 /* Character.swift */,
 				510129C7295E5FEE00BEBEE0 /* Episode.swift */,
+				510129D8295FF73B00BEBEE0 /* Origin.swift */,
+				510129DA296008B500BEBEE0 /* SingleLocation.swift */,
+				510129DC29600C8E00BEBEE0 /* CharacterStatus.swift */,
+				510129DE29600D1B00BEBEE0 /* CharacterGender.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				510129D3295FCBEE00BEBEE0 /* NetworkService.swift in Sources */,
+				510129DD29600C8E00BEBEE0 /* CharacterStatus.swift in Sources */,
 				510129D7295FCEA900BEBEE0 /* NetworkEndpoint.swift in Sources */,
 				510129AD295E511B00BEBEE0 /* MainTabbarController.swift in Sources */,
 				510129CF295E616E00BEBEE0 /* EpisodeViewController.swift in Sources */,
@@ -241,6 +254,9 @@
 				510129AB295E511B00BEBEE0 /* SceneDelegate.swift in Sources */,
 				510129D5295FCC5100BEBEE0 /* NetworkRequest.swift in Sources */,
 				510129CD295E615F00BEBEE0 /* LocationViewController.swift in Sources */,
+				510129DF29600D1B00BEBEE0 /* CharacterGender.swift in Sources */,
+				510129D9295FF73C00BEBEE0 /* Origin.swift in Sources */,
+				510129DB296008B500BEBEE0 /* SingleLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
