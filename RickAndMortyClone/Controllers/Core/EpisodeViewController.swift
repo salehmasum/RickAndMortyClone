@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Represents Controller to show and display Episodes
 final class EpisodeViewController: UIViewController {
 
     override func viewDidLoad() {

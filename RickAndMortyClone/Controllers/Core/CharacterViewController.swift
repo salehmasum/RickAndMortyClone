@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Represents Controller to show and display and Search characters
 final class CharacterViewController: UIViewController {
     
     override func viewDidLoad() {

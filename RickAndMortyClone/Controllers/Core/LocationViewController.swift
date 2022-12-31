@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Represents Controller to show and display Locations
 final class LocationViewController: UIViewController {
 
     override func viewDidLoad() {

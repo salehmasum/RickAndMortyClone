@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Represents Controller to show various app Settings
 final class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
