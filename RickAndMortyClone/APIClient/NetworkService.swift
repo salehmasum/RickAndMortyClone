@@ -18,8 +18,13 @@ final class NetworkService {
     /// Send Rick And Morty Api Call
     /// - Parameters:
     ///   - request: request instance
+    ///   - typle: the type of object we expect to get back
     ///   - completion: call back with data or error
-    public func execute(_ request: NetworkRequest, completion: @escaping () -> Void) {
+    public func execute<T: Codable>(
+        _ request: NetworkRequest,
+        expecting type: T.Type,
+        completion: @escaping (Result<T, Error>) -> Void
+    ) {
         
     }
 }

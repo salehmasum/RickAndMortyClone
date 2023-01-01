@@ -15,6 +15,19 @@ final class CharacterViewController: UIViewController {
         super.viewDidLoad()
         title = "Characters"
         view.backgroundColor = .systemBackground
+        
+        let request = NetworkRequest(
+            endpoint: .character,
+            pathComponents: ["1"]
+        )
+        print(request.url)
+        
+        NetworkService.shared.execute(
+            request,
+            expecting: String.self
+        ) { result in
+            
+        }
     }
     
 }
