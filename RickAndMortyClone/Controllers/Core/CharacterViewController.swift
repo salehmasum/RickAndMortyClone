@@ -11,23 +11,23 @@ import UIKit
 /// Represents Controller to show and display and Search characters
 final class CharacterViewController: UIViewController {
     
+    private let characterListView = CharacterListView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Characters"
         view.backgroundColor = .systemBackground
-        
-        let request = NetworkRequest(
-            endpoint: .character,
-            pathComponents: ["1"]
-        )
-        print(request.url)
-        
-        NetworkService.shared.execute(
-            request,
-            expecting: String.self
-        ) { result in
-            
-        }
+        setUpView()
+    }
+    
+    private func setUpView() {
+        view.addSubview(characterListView)
+        NSLayoutConstraint.activate([
+            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        ])
     }
     
 }

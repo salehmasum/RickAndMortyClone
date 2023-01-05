@@ -18,7 +18,7 @@ final class NetworkRequest {
     /// Desired End Point
     private let endpoint: NetworkEndpoint
     /// Path Components for API, if any
-    private let pathComponents: Set<String> 
+    private let pathComponents: [String]
     /// Query Arguments for API, if any
     private let queryParameters: [URLQueryItem]
     
@@ -64,7 +64,7 @@ final class NetworkRequest {
     ///   - queryParameters: Collection of query parameters
     public init(
         endpoint: NetworkEndpoint,
-        pathComponents: Set<String> = [],
+        pathComponents: [String] = [],
         queryParameters: [URLQueryItem] = []
     ) {
         self.endpoint = endpoint
@@ -73,4 +73,8 @@ final class NetworkRequest {
     }
     
     
+}
+
+extension NetworkRequest {
+    static let listCharacterRequests = NetworkRequest(endpoint: .character)
 }
