@@ -32,6 +32,10 @@
 		51A30E4D2962C2890058CCCB /* GetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A30E4C2962C2890058CCCB /* GetAllCharactersResponse.swift */; };
 		51A30E4F2962FDC30058CCCB /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A30E4E2962FDC30058CCCB /* CharacterListViewModel.swift */; };
 		51A30E512962FE930058CCCB /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A30E502962FE930058CCCB /* CharacterListView.swift */; };
+		51DD7BA42966A656005DB9F5 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DD7BA32966A656005DB9F5 /* CharacterDetailViewController.swift */; };
+		51DD7BA62966A959005DB9F5 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DD7BA52966A959005DB9F5 /* CharacterDetailView.swift */; };
+		51DD7BA82966A9C2005DB9F5 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DD7BA72966A9C2005DB9F5 /* CharacterDetailViewModel.swift */; };
+		51DD7BAA2966EF09005DB9F5 /* FooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DD7BA92966EF09005DB9F5 /* FooterLoadingCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +66,10 @@
 		51A30E4C2962C2890058CCCB /* GetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		51A30E4E2962FDC30058CCCB /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		51A30E502962FE930058CCCB /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		51DD7BA32966A656005DB9F5 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
+		51DD7BA52966A959005DB9F5 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		51DD7BA72966A9C2005DB9F5 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
+		51DD7BA92966EF09005DB9F5 /* FooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 		510129BC295E569D00BEBEE0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				51DD7BA22966A61A005DB9F5 /* Other */,
 				510129C9295E607600BEBEE0 /* Core */,
 			);
 			path = Controllers;
@@ -128,6 +137,8 @@
 			children = (
 				51A30E502962FE930058CCCB /* CharacterListView.swift */,
 				51513CF7296452C30033BC38 /* CharacterCollectionViewCell.swift */,
+				51DD7BA52966A959005DB9F5 /* CharacterDetailView.swift */,
+				51DD7BA92966EF09005DB9F5 /* FooterLoadingCollectionReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,6 +148,7 @@
 			children = (
 				51A30E4E2962FDC30058CCCB /* CharacterListViewModel.swift */,
 				51513CF9296454CA0033BC38 /* CharacterCollectionViewCellViewModel.swift */,
+				51DD7BA72966A9C2005DB9F5 /* CharacterDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -202,6 +214,14 @@
 				51A30E4C2962C2890058CCCB /* GetAllCharactersResponse.swift */,
 			);
 			path = APIResponseType;
+			sourceTree = "<group>";
+		};
+		51DD7BA22966A61A005DB9F5 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				51DD7BA32966A656005DB9F5 /* CharacterDetailViewController.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,14 +305,18 @@
 				51A30E512962FE930058CCCB /* CharacterListView.swift in Sources */,
 				510129A9295E511B00BEBEE0 /* AppDelegate.swift in Sources */,
 				510129C6295E5FE600BEBEE0 /* Character.swift in Sources */,
+				51DD7BA82966A9C2005DB9F5 /* CharacterDetailViewModel.swift in Sources */,
 				510129C4295E587200BEBEE0 /* Location.swift in Sources */,
 				510129AB295E511B00BEBEE0 /* SceneDelegate.swift in Sources */,
+				51DD7BA42966A656005DB9F5 /* CharacterDetailViewController.swift in Sources */,
 				51513CFA296454CA0033BC38 /* CharacterCollectionViewCellViewModel.swift in Sources */,
 				51513CF62963CEC50033BC38 /* Extensions.swift in Sources */,
 				510129D5295FCC5100BEBEE0 /* NetworkRequest.swift in Sources */,
 				510129CD295E615F00BEBEE0 /* LocationViewController.swift in Sources */,
+				51DD7BAA2966EF09005DB9F5 /* FooterLoadingCollectionReusableView.swift in Sources */,
 				510129DF29600D1B00BEBEE0 /* CharacterGender.swift in Sources */,
 				510129D9295FF73C00BEBEE0 /* Origin.swift in Sources */,
+				51DD7BA62966A959005DB9F5 /* CharacterDetailView.swift in Sources */,
 				510129DB296008B500BEBEE0 /* SingleLocation.swift in Sources */,
 				51A30E4D2962C2890058CCCB /* GetAllCharactersResponse.swift in Sources */,
 				51513CF8296452C30033BC38 /* CharacterCollectionViewCell.swift in Sources */,

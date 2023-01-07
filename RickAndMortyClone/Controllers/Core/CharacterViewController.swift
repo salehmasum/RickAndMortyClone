@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Represents Controller to show and display and Search characters
-final class CharacterViewController: UIViewController {
+final class CharacterViewController: UIViewController, CharacterListViewDelegate {
     
     private let characterListView = CharacterListView()
     
@@ -18,6 +18,7 @@ final class CharacterViewController: UIViewController {
         title = "Characters"
         view.backgroundColor = .systemBackground
         setUpView()
+        characterListView.delegate = self
     }
     
     private func setUpView() {
@@ -28,6 +29,16 @@ final class CharacterViewController: UIViewController {
             characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
         ])
+    }
+    
+    //MARK: - CharacterListViewDelegate Method
+    func characterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
+        //Open detail controller for that character
+        let detailVc = CharacterDetailViewController(
+            viewModel: CharacterDetailViewModel(character: character)
+        )
+        detailVc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(detailVc, animated: true)
     }
     
 }

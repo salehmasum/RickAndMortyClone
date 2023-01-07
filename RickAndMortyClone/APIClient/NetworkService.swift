@@ -34,7 +34,7 @@ final class NetworkService {
             completion(.failure(NetworkServiceError.failedToCreateRequest))
             return
         }
-        
+       
         let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             guard let data = data, error == nil else {
                 completion(.failure(error ?? NetworkServiceError.failedToGetData))
