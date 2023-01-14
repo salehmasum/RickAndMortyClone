@@ -12,6 +12,10 @@ final class CharacterDetailViewModel {
     
     private let character: Character
     
+    public var episodes: [String] {
+        character.episode
+    }
+    
     enum SectionType {
         case photo(viewModel: CharacterPhotoCollectionViewCellViewModel)
         

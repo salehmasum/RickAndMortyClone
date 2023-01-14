@@ -10,8 +10,34 @@ import UIKit
 final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "CharacterEpisodeCollectionViewCell"
     
+    private let seasonLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        return label
+    }()
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 22, weight: .regular)
+        return label
+    }()
+    private let airdateLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .light)
+        return label
+    }()
+    
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .tertiarySystemBackground
+        contentView.layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.systemBlue.cgColor
+        contentView.addSubviews(seasonLabel,nameLabel, airdateLabel)
         setUpConstraints()
     }
     
@@ -20,15 +46,39 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstraints() {
-        
+        NSLayoutConstraint.activate([
+            seasonLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            seasonLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            seasonLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            seasonLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33),
+            
+            nameLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33),
+            
+            airdateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            airdateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            airdateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            airdateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.33),
+            
+        ])
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        seasonLabel.text = nil
+        nameLabel.text = nil
+        airdateLabel.text = nil
     }
     
     public func configure(with viewModel: CharacterEpisodeCollectionViewCellViewModel) {
-        
+        viewModel.registerForData { [weak self] data in
+            self?.seasonLabel.text = "Episode "+data.episode
+            self?.nameLabel.text = data.name
+            self?.airdateLabel.text = "Aired on "+data.air_date
+        }
+        viewModel.fetchEpisode()
     }
     
 }

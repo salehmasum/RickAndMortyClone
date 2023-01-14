@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Episode: Codable {
+struct Episode: Codable, EpisodeDataRender {
+    
     let id: Int
     let name: String
     let air_date: String
@@ -15,6 +16,7 @@ struct Episode: Codable {
     let characters: [String]
     let url: String
     let created: String
+    
 }
 
 
