@@ -16,7 +16,7 @@ final class NetworkRequest {
     }
     
     /// Desired End Point
-    private let endpoint: NetworkEndpoint
+    let endpoint: NetworkEndpoint
     /// Path Components for API, if any
     private let pathComponents: [String]
     /// Query Arguments for API, if any
@@ -126,4 +126,5 @@ final class NetworkRequest {
 
 extension NetworkRequest {
     static let listCharacterRequests = NetworkRequest(endpoint: .character)
+    static let listEpisodesRequests  = NetworkRequest(endpoint: .episode)
 }

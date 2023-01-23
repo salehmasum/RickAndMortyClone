@@ -12,6 +12,8 @@ final class NetworkService {
     /// Shared Singleton Instance
     static let shared = NetworkService()
     
+    private let cacheManager = APICacheManager()
+    
     /// Privatized Constructor
     private init() {}
     
@@ -30,12 +32,28 @@ final class NetworkService {
         expecting type: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
+        //Check if data is available in Cache
+        if let cachedData = cacheManager.cachedResponse(
+            for: request.endpoint,
+            url: request.url
+        ) {
+            print("Using cached api response")
+            do {
+                let result = try JSONDecoder().decode(type.self, from: cachedData)
+                completion(.success(result))
+            } catch {
+                completion(.failure(error))
+            }
+            
+            return
+        }
+        
         guard let urlRequest = self.request(from: request) else {
             completion(.failure(NetworkServiceError.failedToCreateRequest))
             return
         }
        
-        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] data, _, error in
             guard let data = data, error == nil else {
                 completion(.failure(error ?? NetworkServiceError.failedToGetData))
                 return
@@ -44,6 +62,11 @@ final class NetworkService {
             //Decode resposne
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
+                self?.cacheManager.setCache(
+                    for: request.endpoint,
+                    url: request.url,
+                    data: data
+                )
                 completion(.success(result))
             }
             catch {

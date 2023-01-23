@@ -19,6 +19,18 @@ final class CharacterViewController: UIViewController, CharacterListViewDelegate
         view.backgroundColor = .systemBackground
         setUpView()
         characterListView.delegate = self
+        addSearchButton()
+    }
+    
+    private func addSearchButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(didTapSearch))
+    }
+    
+    @objc
+    private func didTapSearch() {
+        let vc = SearchViewController(config: .init(type: .character))
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setUpView() {
