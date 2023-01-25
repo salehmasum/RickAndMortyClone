@@ -5,17 +5,14 @@
 //  Created by Saleh Masum on 30/12/2022.
 //
 
+import SafariServices
 import UIKit
 import SwiftUI
 
 /// Represents Controller to show various app Settings
 final class SettingsViewController: UIViewController {
 
-    private let settingsSwiftUIController = UIHostingController(
-        rootView: SettingsView(viewModel: .init(cellViewModels: SettingsOption.allCases.compactMap({
-            return SettingsCellViewModel(type: $0)
-        })))
-    )
+    private var settingsSwiftUIController: UIHostingController<SettingsView>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +22,16 @@ final class SettingsViewController: UIViewController {
     }
     
     private func addSwiftUIController() {
+        
+        let settingsSwiftUIController =  UIHostingController(
+            rootView: SettingsView(viewModel: .init(cellViewModels: SettingsOption.allCases.compactMap({
+                return SettingsCellViewModel(type: $0) { [weak self] option in
+                    print(option.displayTitle)
+                    self?.handleTap(option: option)
+                }
+            })))
+        )
+        
         addChild(settingsSwiftUIController)
         settingsSwiftUIController.didMove(toParent: self)
         view.addSubview(settingsSwiftUIController.view)
@@ -37,6 +44,23 @@ final class SettingsViewController: UIViewController {
             settingsSwiftUIController.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
             
         ])
+        
+        self.settingsSwiftUIController = settingsSwiftUIController
+    }
+    
+    private func handleTap(option: SettingsOption) {
+        guard Thread.current.isMainThread else {
+            return
+        }
+        
+        if let url = option.targetUrl {
+            //Open Website
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+        }else {
+            //Show rating prompt
+        }
+
     }
     
 }

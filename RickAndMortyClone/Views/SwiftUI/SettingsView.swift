@@ -31,18 +31,26 @@ struct SettingsView: View {
                 }
                 Text(cellViewModel.title)
                     .padding(.leading, 10)
+                Spacer()
             }
             .padding(.bottom, 3)
+            .onTapGesture {
+                cellViewModel.onTapHandler(cellViewModel.type)
+            }
             
         }
     }
     
 }
-
+ 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(viewModel: .init(cellViewModels: SettingsOption.allCases.compactMap({
-            return SettingsCellViewModel(type: $0)
+           
+            return SettingsCellViewModel(type: $0) { option in
+                
+            }
+            
         })))
     }
 }
