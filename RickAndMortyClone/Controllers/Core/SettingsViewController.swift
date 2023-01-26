@@ -8,6 +8,7 @@
 import SafariServices
 import UIKit
 import SwiftUI
+import StoreKit
 
 /// Represents Controller to show various app Settings
 final class SettingsViewController: UIViewController {
@@ -58,7 +59,11 @@ final class SettingsViewController: UIViewController {
             let vc = SFSafariViewController(url: url)
             present(vc, animated: true)
         }else {
-            //Show rating prompt
+            if let windowScene = view.window?.windowScene
+             {
+                SKStoreReviewController.requestReview(in: windowScene)
+               
+            }
         }
 
     }
