@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+    
 final class LocationView: UIView {
     
     private var viewModel: LocationViewModel? {
@@ -26,8 +26,8 @@ final class LocationView: UIView {
         table.isHidden = true
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(
-            UITableViewCell.self,
-            forCellReuseIdentifier: "cell"
+            LocationTableViewCell.self,
+            forCellReuseIdentifier: LocationTableViewCell.cellIdentifier
         )
         return table
     }()
@@ -47,10 +47,16 @@ final class LocationView: UIView {
         addSubviews(tableView, spinner)
         spinner.startAnimating()
         addConstraints()
+        configureTable()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureTable() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     private func addConstraints() {
@@ -71,4 +77,34 @@ final class LocationView: UIView {
         self.viewModel = viewModel
     }
 
+}
+
+extension LocationView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        //Notify controller of selection
+    }
+}
+
+extension LocationView: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel?.cellViewModels.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cellViewModels = viewModel?.cellViewModels else {
+            fatalError()
+            
+        }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: LocationTableViewCell.cellIdentifier,
+            for: indexPath
+        ) as? LocationTableViewCell else{
+            fatalError()
+        }
+        let cellViewModel = cellViewModels[indexPath.row]
+        cell.textLabel?.text = cellViewModel.name
+        return cell
+    }
 }

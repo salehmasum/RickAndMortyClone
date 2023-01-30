@@ -7,11 +7,30 @@
 
 import UIKit
 
+protocol LocationViewModelDelegate: AnyObject {
+    func didFetchInitialLocations()
+}
+
 final class LocationViewModel {
     
-    private var locations: [Location] = []
+    public weak var delegate: LocationViewModelDelegate?
     
-    private var cellViewModels: [String] = []
+    private var locations: [Location] = [] {
+        didSet {
+            for location in locations {
+                let cellViewModel = LocationTableViewCellViewModel(location: location)
+                if !cellViewModels.contains(cellViewModel){
+                    cellViewModels.append(cellViewModel)
+                }
+            }
+        }
+    }
+    
+    //Location response info will
+    //contain next url if present
+    private var locationInfo: Info?
+    
+    public private(set) var cellViewModels: [LocationTableViewCellViewModel] = []
     
     init() {
         
@@ -20,13 +39,17 @@ final class LocationViewModel {
     public func fetchLocations() {
         NetworkService.shared.execute(
             .listLocationsRequests,
-            expecting: String.self
-        ) { result in
+            expecting: GetLocationsResponse.self
+        ) { [weak self] result in
             switch result {
             case .success(let model):
-                break
+                self?.locationInfo = model.info
+                self?.locations = model.results
+                DispatchQueue.main.async {
+                    self?.delegate?.didFetchInitialLocations()
+                }
             case .failure(let error):
-                break
+                print(String(describing: error))
             }
         }
     }
