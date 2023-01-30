@@ -127,4 +127,5 @@ final class NetworkRequest {
 extension NetworkRequest {
     static let listCharacterRequests = NetworkRequest(endpoint: .character)
     static let listEpisodesRequests  = NetworkRequest(endpoint: .episode)
+    static let listLocationsRequests  = NetworkRequest(endpoint: .location)
 }
