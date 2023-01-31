@@ -36,6 +36,13 @@ final class LocationViewModel {
         
     }
     
+    public func location(at index: Int) -> Location? {
+        if (index >= locations.count) {
+            return nil
+        }
+        return self.locations[index]
+    }
+    
     public func fetchLocations() {
         NetworkService.shared.execute(
             .listLocationsRequests,

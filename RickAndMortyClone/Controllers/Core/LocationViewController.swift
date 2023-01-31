@@ -8,7 +8,7 @@
 import UIKit
 
 /// Represents Controller to show and display Locations
-final class LocationViewController: UIViewController, LocationViewModelDelegate {
+final class LocationViewController: UIViewController, LocationViewModelDelegate, LocationViewDelegate {
 
     private let primaryView = LocationView()
     
@@ -17,6 +17,7 @@ final class LocationViewController: UIViewController, LocationViewModelDelegate 
     //MARK: - LifeCycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
+        primaryView.delegate = self
         title = "Locations"
         view.backgroundColor = .systemBackground
         addSearchButton()
@@ -43,8 +44,16 @@ final class LocationViewController: UIViewController, LocationViewModelDelegate 
     private func didTapSearch() {
         
     }
+    
+    //MARK: - LocationViewDelegate
+    func locationView(_ locationView: LocationView, didSelect location: Location) {
+        let vc = LocationDetailViewController(location: location)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
 
     //MARK: - LocationViewModel delegate
+    
     func didFetchInitialLocations() {
         primaryView.configure(with: viewModel)
     }

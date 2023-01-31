@@ -37,7 +37,7 @@ final class NetworkService {
             for: request.endpoint,
             url: request.url
         ) {
-            print("Using cached api response")
+            //print("Using cached api response")
             do {
                 let result = try JSONDecoder().decode(type.self, from: cachedData)
                 completion(.success(result))
