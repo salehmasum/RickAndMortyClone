@@ -7,19 +7,37 @@
 
 import UIKit
 
+//Dynamic Search Option View
+//Render Results
+//Render no results zero state
+//Searching  / API call
+
 /// Configurable controller to search
 final class SearchViewController: UIViewController {
-
+    
+    /// Configuration for search session
     struct Config {
         enum `Type` {
-            case character
-            case episode
-            case location
+            case character // name | status | gender
+            case episode //  name
+            case location // name | type
+            var title: String {
+                switch self {
+                case .character:
+                    return "Search Characters"
+                case .episode:
+                    return "Search Episodes"
+                case .location:
+                    return "Search Locations"
+                }
+            }
         }
         let type: `Type`
     }
     
     private let config: Config
+    
+    //MARK: - Init
     
     init(config: Config) {
         self.config = config
@@ -30,10 +48,11 @@ final class SearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Search"
+        title = config.type.title
         view.backgroundColor = .systemBackground
     }
     

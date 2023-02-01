@@ -44,6 +44,12 @@
 		51D1C6072989135700489C4A /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D1C6062989135600489C4A /* LocationDetailViewController.swift */; };
 		51D1C60A298919A200489C4A /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D1C609298919A200489C4A /* LocationDetailView.swift */; };
 		51D1C60D2989217200489C4A /* LocationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D1C60C2989217200489C4A /* LocationDetailViewModel.swift */; };
+		51D6BC80298A29890036F85C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BC7F298A29890036F85C /* SearchView.swift */; };
+		51D6BC83298A2CF10036F85C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BC82298A2CF10036F85C /* SearchViewModel.swift */; };
+		51D6BC86298A49910036F85C /* NoSearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BC85298A49910036F85C /* NoSearchResultsView.swift */; };
+		51D6BC88298A4A340036F85C /* NoSearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BC87298A4A340036F85C /* NoSearchResultsViewModel.swift */; };
+		51D6BC8A298A4AEE0036F85C /* SearchInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BC89298A4AEE0036F85C /* SearchInputView.swift */; };
+		51D6BC8C298A4B5E0036F85C /* SearchInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6BC8B298A4B5E0036F85C /* SearchInputViewModel.swift */; };
 		51D8DB07296D0A6300EA3687 /* CharacterPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8DB06296D0A6300EA3687 /* CharacterPhotoCollectionViewCell.swift */; };
 		51D8DB09296D0A7600EA3687 /* CharacterInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8DB08296D0A7600EA3687 /* CharacterInfoCollectionViewCell.swift */; };
 		51D8DB0B296D0A8300EA3687 /* CharacterEpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D8DB0A296D0A8300EA3687 /* CharacterEpisodeCollectionViewCell.swift */; };
@@ -107,6 +113,12 @@
 		51D1C6062989135600489C4A /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		51D1C609298919A200489C4A /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		51D1C60C2989217200489C4A /* LocationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewModel.swift; sourceTree = "<group>"; };
+		51D6BC7F298A29890036F85C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		51D6BC82298A2CF10036F85C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		51D6BC85298A49910036F85C /* NoSearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsView.swift; sourceTree = "<group>"; };
+		51D6BC87298A4A340036F85C /* NoSearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsViewModel.swift; sourceTree = "<group>"; };
+		51D6BC89298A4AEE0036F85C /* SearchInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputView.swift; sourceTree = "<group>"; };
+		51D6BC8B298A4B5E0036F85C /* SearchInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInputViewModel.swift; sourceTree = "<group>"; };
 		51D8DB06296D0A6300EA3687 /* CharacterPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		51D8DB08296D0A7600EA3687 /* CharacterInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		51D8DB0A296D0A8300EA3687 /* CharacterEpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -193,6 +205,7 @@
 		510129BE295E56AF00BEBEE0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				51D6BC7E298A296A0036F85C /* Search */,
 				51D1C6082989193600489C4A /* LocationDetails */,
 				51D1C5FA2986247100489C4A /* Location */,
 				51E1F4D12980057800CD3769 /* SwiftUI */,
@@ -208,6 +221,7 @@
 		510129BF295E56C400BEBEE0 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				51D6BC81298A2CDD0036F85C /* Search */,
 				51D1C60B2989215300489C4A /* LocationDetail */,
 				51D1C5FD29864FF900489C4A /* Location */,
 				51E1F4CA2980054F00CD3769 /* Settings */,
@@ -318,6 +332,26 @@
 				51D1C60C2989217200489C4A /* LocationDetailViewModel.swift */,
 			);
 			path = LocationDetail;
+			sourceTree = "<group>";
+		};
+		51D6BC7E298A296A0036F85C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				51D6BC7F298A29890036F85C /* SearchView.swift */,
+				51D6BC85298A49910036F85C /* NoSearchResultsView.swift */,
+				51D6BC89298A4AEE0036F85C /* SearchInputView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		51D6BC81298A2CDD0036F85C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				51D6BC82298A2CF10036F85C /* SearchViewModel.swift */,
+				51D6BC87298A4A340036F85C /* NoSearchResultsViewModel.swift */,
+				51D6BC8B298A4B5E0036F85C /* SearchInputViewModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		51D8DB04296D051100EA3687 /* CharacterDetails */ = {
@@ -486,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51D1C60D2989217200489C4A /* LocationDetailViewModel.swift in Sources */,
+				51D6BC80298A29890036F85C /* SearchView.swift in Sources */,
 				51D8DB11296D0C0D00EA3687 /* CharacterInfoCollectionViewCellViewModel.swift in Sources */,
 				510129D3295FCBEE00BEBEE0 /* NetworkService.swift in Sources */,
 				510129DD29600C8E00BEBEE0 /* CharacterStatus.swift in Sources */,
@@ -502,8 +537,10 @@
 				51D1C60A298919A200489C4A /* LocationDetailView.swift in Sources */,
 				510129CB295E60F000BEBEE0 /* CharacterViewController.swift in Sources */,
 				51F9C0FE29793CE600701DA1 /* EpisodeListView.swift in Sources */,
+				51D6BC83298A2CF10036F85C /* SearchViewModel.swift in Sources */,
 				51A30E512962FE930058CCCB /* CharacterListView.swift in Sources */,
 				51F9C0F92979156D00701DA1 /* EpisodeDetailViewModel.swift in Sources */,
+				51D6BC8C298A4B5E0036F85C /* SearchInputViewModel.swift in Sources */,
 				510129A9295E511B00BEBEE0 /* AppDelegate.swift in Sources */,
 				510129C6295E5FE600BEBEE0 /* Character.swift in Sources */,
 				51D1C603298791B400489C4A /* LocationTableViewCell.swift in Sources */,
@@ -522,12 +559,15 @@
 				51513CFA296454CA0033BC38 /* CharacterCollectionViewCellViewModel.swift in Sources */,
 				51D8DB0B296D0A8300EA3687 /* CharacterEpisodeCollectionViewCell.swift in Sources */,
 				51D8DB0F296D0BF500EA3687 /* CharacterPhotoCollectionViewCellViewModel.swift in Sources */,
+				51D6BC8A298A4AEE0036F85C /* SearchInputView.swift in Sources */,
 				51513CF62963CEC50033BC38 /* Extensions.swift in Sources */,
 				51D1C5FC298624D900489C4A /* LocationView.swift in Sources */,
 				510129D5295FCC5100BEBEE0 /* NetworkRequest.swift in Sources */,
+				51D6BC86298A49910036F85C /* NoSearchResultsView.swift in Sources */,
 				510129CD295E615F00BEBEE0 /* LocationViewController.swift in Sources */,
 				51DD7BAA2966EF09005DB9F5 /* FooterLoadingCollectionReusableView.swift in Sources */,
 				51D1C6072989135700489C4A /* LocationDetailViewController.swift in Sources */,
+				51D6BC88298A4A340036F85C /* NoSearchResultsViewModel.swift in Sources */,
 				510129DF29600D1B00BEBEE0 /* CharacterGender.swift in Sources */,
 				51E1F4CE2980054F00CD3769 /* SettingsViewModel.swift in Sources */,
 				510129D9295FF73C00BEBEE0 /* Origin.swift in Sources */,
