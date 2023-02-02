@@ -14,7 +14,7 @@ import Foundation
 
 final class SearchViewModel {
     
-    private let config: SearchViewController.Config
+    let config: SearchViewController.Config
     
     init(config: SearchViewController.Config) {
         self.config = config
