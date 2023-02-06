@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol SearchViewDelegate: AnyObject {
+    func searchView(_ searchView: SearchView, didSelectOption option: SearchInputViewModel.DynamicOption)
+}
+
 final class SearchView: UIView {
+    
+    weak var delegate: SearchViewDelegate?
 
     private let viewModel: SearchViewModel
     
@@ -28,6 +34,11 @@ final class SearchView: UIView {
         addConstraints()
         
         searchInputView.configure(with: .init(type: viewModel.config.type))
+        searchInputView.delegate = self
+        
+        viewModel.registerOptionChangeBlock { tuple in
+            self.searchInputView.update(option: tuple.0, value: tuple.1)
+        }
     }
                     
     required init?(coder: NSCoder) {
@@ -40,7 +51,7 @@ final class SearchView: UIView {
             searchInputView.topAnchor.constraint(equalTo: topAnchor),
             searchInputView.leftAnchor.constraint(equalTo: leftAnchor),
             searchInputView.rightAnchor.constraint(equalTo: rightAnchor),
-            searchInputView.heightAnchor.constraint(equalToConstant: 110),
+            searchInputView.heightAnchor.constraint(equalToConstant: viewModel.config.type == .episode ? 55 : 110),
             
             //No Results
             noResultsView.widthAnchor.constraint(equalToConstant: 150),
@@ -48,6 +59,10 @@ final class SearchView: UIView {
             noResultsView.centerXAnchor.constraint(equalTo: centerXAnchor),
             noResultsView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
+    }
+    
+    public func presentKeyboard() {
+        searchInputView.presentKeyboard()
     }
     
 }
@@ -72,4 +87,11 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
+}
+
+//MARK: - SearchInputViewDelegate
+extension SearchView: SearchInputViewDelegate {
+    func searchInputView(_ inputView: SearchInputView, didSelectOption option: SearchInputViewModel.DynamicOption) {
+        delegate?.searchView(self, didSelectOption: option)
+    }
 }

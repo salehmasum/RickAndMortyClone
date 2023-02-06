@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
+protocol SearchInputViewDelegate: AnyObject {
+    func searchInputView(_ inputView: SearchInputView, didSelectOption option: SearchInputViewModel.DynamicOption)
+}
+
 final class SearchInputView: UIView {
+    
+    weak var delegate: SearchInputViewDelegate?
     
     private let searchBar: UISearchBar = {
        let searchBar = UISearchBar()
@@ -27,11 +33,12 @@ final class SearchInputView: UIView {
         }
     }
     
+    private var stackView: UIStackView?
+    
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemPink
         addSubviews(searchBar)
         addConstraints()
     }
@@ -40,6 +47,7 @@ final class SearchInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Private
     private func addConstraints() {
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: topAnchor),
@@ -49,16 +57,99 @@ final class SearchInputView: UIView {
         ])
     }
     
+    private func createOptionStackView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 6
+        stackView.alignment = .center
+        addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            stackView.leftAnchor.constraint(equalTo: leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: rightAnchor),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+        
+        return stackView
+    }
+    
     private func createOptionSelectionView(options: [SearchInputViewModel.DynamicOption]) {
-        for option in options {
-            print(option.rawValue)
+       
+        let stackView = createOptionStackView()
+        self.stackView = stackView
+        for x in 0..<options.count {
+            let option = options[x]
+            let button = createButton(with: option, tag: x)
+            stackView.addArrangedSubview(button)
         }
     }
     
-    func configure(with viewModel: SearchInputViewModel) {
+    private func createButton(with option: SearchInputViewModel.DynamicOption, tag: Int) -> UIButton {
+        let button = UIButton()
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: option.rawValue,
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+                    .foregroundColor: UIColor.label
+                ]
+            ),
+            for: .normal
+        )
+        button.backgroundColor = .secondarySystemFill
+        button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
+        button.tag = tag
+        button.layer.cornerRadius = 6
+        return button
+    }
+    
+    @objc
+    private func didTapButton(_ sender: UIButton) {
+        guard let options = viewModel?.options else {
+            return
+        }
+        let tag = sender.tag
+        let selected = options[tag]
+        
+        delegate?.searchInputView(self, didSelectOption: selected)
+    }
+    
+    //MARK: - Public
+    public func configure(with viewModel: SearchInputViewModel) {
         searchBar.placeholder = viewModel.searchPlaceholderText
         //TODO: Fix height of input view for episode with no option
         self.viewModel = viewModel
+    }
+    
+    public func presentKeyboard() {
+        searchBar.becomeFirstResponder() 
+    }
+    
+    public func update(
+        option: SearchInputViewModel.DynamicOption,
+        value: String
+    ) {
+        //Update options
+        guard let buttons = stackView?.arrangedSubviews as? [UIButton],
+              let options = viewModel?.options,
+              let index = options.firstIndex(of: option) else {
+            return
+        }
+        let button: UIButton = buttons[index]
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: value.uppercased(),
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 18, weight: .medium),
+                    .foregroundColor: UIColor.link
+                ]
+            ),
+            for: .normal
+        )
+        
     }
     
 }

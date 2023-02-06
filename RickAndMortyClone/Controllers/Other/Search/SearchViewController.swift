@@ -63,12 +63,18 @@ final class SearchViewController: UIViewController {
             style: .done,
             target: self, action: #selector(didTapSearch)
         )
+        searchView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        searchView.presentKeyboard()
     }
      
     @objc private func didTapSearch() {
-        //viewModel.executeSearch()
+        viewModel.executeSearch()
     }
-    
+     
     private func addConstraints() {
         NSLayoutConstraint.activate([
             searchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -78,4 +84,19 @@ final class SearchViewController: UIViewController {
         ])
     }
 
+}
+
+//MARK: - SearchViewDelegate
+
+extension SearchViewController: SearchViewDelegate {
+    func searchView(_ searchView: SearchView, didSelectOption option: SearchInputViewModel.DynamicOption) {
+        let vc = SearchOptionPickerViewController(option: option) { [weak self] selection in
+            DispatchQueue.main.async {
+                self?.viewModel.set(value: selection, for: option)
+            }
+        }
+        vc.sheetPresentationController?.detents = [.medium()]
+        vc.sheetPresentationController?.prefersGrabberVisible = true
+        present(vc, animated: true)
+    }
 }
